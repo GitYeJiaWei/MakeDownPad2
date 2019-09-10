@@ -63,12 +63,7 @@ public class MainActivity implements HomeFragment.CallBackValue	{
 	)
 
 	//调用接口方法
-	 setCallBackValue(new CallBackValue() {
-                        @Override
-                        public void SendMessageValue(String strValue) {
-
-                        }
-                    });
+	callBackValue.SendMessageValue(strValue);
 ```
 
 ###Activity
