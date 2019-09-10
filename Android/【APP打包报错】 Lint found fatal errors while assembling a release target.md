@@ -30,7 +30,7 @@ app/build/reports/lint-results-release-fatal.html 文件
 
 打开后可以看到问题的详细原因：
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/4.png)
 
 在对应的问题处运行，查看日志，发现问题出现在如下代码处：
 ```
