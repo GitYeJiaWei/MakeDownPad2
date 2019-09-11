@@ -1,4 +1,6 @@
-#Idea快捷键
+#Android 和 Idea快捷键
+
+file:///D:/SDK/docs/reference/classes.html  API文档路径
 
 ```
 常用的有fori/sout/psvm+Tab即可生成循环、System.out、main方法等boilerplate样板代码 
