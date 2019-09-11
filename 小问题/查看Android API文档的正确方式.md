@@ -3,11 +3,11 @@
 ##AS中简单查看API
 在AS中我们可以简单查看函数或类的API，选中我们想要查看的函数或类的代码，按快捷键 Ctrl+Q，AS就会弹出一个简单说明的窗口：
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/10.png)
 
 ##第一步：下载Android API的文档
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/11.png)
 
 ##详细查看API
 
