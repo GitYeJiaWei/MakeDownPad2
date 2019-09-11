@@ -5,11 +5,11 @@ Toolbar是谷歌在2014年Google IO 大会上推出的一套全新的设计规�
 
 ##初识Toolbar
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/1toolbar.jpg)
 
 根据图中的资料，可以知道，Toolbar首先是一个ViewGroup，它是用来做APP的标题栏，其中包括5个部分，分别是一个导航按钮（a navigation button）、一个logo图片(a branded logo image)、一个标题和副标题(a title and subtitle)、一个或多个自定义View(one or more custom views)以及一个action menu( an action menu)。看一张效果图
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/2toolbar.png)
 
 从效果图中，我们可以很明显地看出来5个部分都是哪里，因为Toolbar是一个ViewGroup，你只有都设置出来了才会显示，如果不设置的话，那么都是空的，啥也没有。那么究竟应该怎么设置呢？下面我们就开始使用Toolbar。
 
@@ -109,7 +109,7 @@ mToolbar=findViewById(R.id.toolbar);
 
 加上这个重写方法以后，action menu就会显示，如同上面的介绍图一样，这个时候有朋友就可能问了，为啥action menu在标题栏上显示这么多图标
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/3toolbar.png)
 
 下面我们来看一下R.menu.toolbar_menu这个配置文件
 ```
@@ -145,16 +145,16 @@ mToolbar=findViewById(R.id.toolbar);
 
 这其中app:showAsAction属性的作用是来控制item在标题栏上展示的形式，一般多取三个值：always、ifRoom以及never。always:总是展示在标题栏上；ifRoom如果标题栏上有位置就展示出来；never：永不展示标题栏。我这里设置的是前两个item的showAsAction属性是ifRoom，后两个是never，所以在状态栏上前两个图标被展示出来了，因为还有两个item未被在标题栏上显示出来，系统会默认一个图标让用户来点击。这里如果我们把mToolbar.setOverflowIcon(getResources().getDrawable(R.drawable.icon_action)); 这句代码注释掉，结果就会是这样
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/4toolbar.png)
 
 ，如果没有未被展示的item，这里就不会出现这个图标。
 点击溢出图标，系统默认的弹出样式是这样的
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/9toolbar.png)
 
 没错，就是这么丑，那么怎么设置一下这个弹出框，能让它变得好看一些，并且符合我们设计师的要求呢？在xml文件里
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/5toolbar.png)
 
 就是通过app:popupTheme属性来控制的，在style文件里可以设置风格、字体颜色大小等等属性。简单看一下toolBar_pop_item
 ```
@@ -164,7 +164,7 @@ mToolbar=findViewById(R.id.toolbar);
 ```
 看一下现在的效果
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/6toolbar.png)
 
 具体的效果根据UI设计师的设计手稿来定
 
@@ -228,12 +228,12 @@ mToolbar=findViewById(R.id.toolbar);
 
 通过这种自定义View方式就可以解决标题居中的问题，看一下效果
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/7toolbar.png)
 
 注意这里返回键不要通过Toolbar的导航Button设置，这样会影响标题居中的效果，直接在自定义View里面设置就行了。
 有些App用搜索框，其实也是利用自定义View来实现，实现起来也很简单，搜索框在中间跟标题重叠，通过设置可见性来调控，简单看一下效果
 
-![]()
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/8toolbar.png)
 
 写到这里，肯定会有小伙伴问了，这里使用Toolbar有什么用，我自己写一个RelativeLayout或者其他什么布局都能实现，为啥非要用Toolbar呢？这里说一下，使用Toolbar比起传统的自定义布局的好处。第一、不需要考虑标题栏和系统状态栏匹配的问题，你自己写还得匹配系统状态栏；第二、就是Toolbar可以和其他的MD设计风格的空间连用，做出比较炫的效果，比如Toolbar+NestScrollView,Toolbar+DrawerLayout + NavigationView等等；第三、谷歌推荐的控件当然要用（嘿嘿，强行凑三条）。
 
