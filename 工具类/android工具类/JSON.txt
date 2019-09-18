@@ -1,0 +1,88 @@
+public class JsonActivity extends Activity { 
+	/** Called when the activity is first created. */ 
+	private TextView tvJson; 
+	private Button btnJson; 
+	private Button btnJsonMulti; 
+	@Override 
+	public void onCreate(Bundle savedInstanceState) { 
+		super.onCreate(savedInstanceState); 
+		setContentView(R.layout.main); 
+		tvJson = (TextView) this.findViewById(R.id.tvJson); 
+		btnJson = (Button) this.findViewById(R.id.btnJson); 
+		btnJsonMulti = (Button) this.findViewById(R.id.btnJsonMulti); 
+		btnJson.setOnClickListener(new View.OnClickListener() { 
+			@Override 
+			public void onClick(View v) { 
+				// url 
+				// String strUrl = "http://10.158.166.110:8080/AndroidServer/JsonServlet"; 
+				String strUrl = ServerPageUtil.getStrUrl(UrlsOfServer.JSON_SINGER); 
+				//获得返回的Json字符串 
+				String strResult = connServerForResult(strUrl); 
+				//解析Json字符串 
+				parseJson(strResult); 
+			} 
+		}); 
+		btnJsonMulti.setOnClickListener(new View.OnClickListener() { 
+			@Override 
+			public void onClick(View v) { 
+				String strUrl = ServerPageUtil.getStrUrl(UrlsOfServer.JSON_SINGERS); 
+				String strResult = connServerForResult(strUrl); 
+				//获得多个Singer 
+				parseJsonMulti(strResult); 
+			} 
+		}); 
+	} 
+	private String connServerForResult(String strUrl) { 
+		// HttpGet对象 
+		HttpGet httpRequest = new HttpGet(strUrl); 
+		String strResult = ""; 
+		try { 
+			// HttpClient对象 
+			HttpClient httpClient = new DefaultHttpClient(); 
+			// 获得HttpResponse对象 
+			HttpResponse httpResponse = httpClient.execute(httpRequest); 
+			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { 
+				// 取得返回的数据 
+				strResult = EntityUtils.toString(httpResponse.getEntity()); 
+			} 
+		} catch (ClientProtocolException e) { 
+			tvJson.setText("protocol error"); 
+			e.printStackTrace(); 
+		} catch (IOException e) { 
+			tvJson.setText("IO error"); 
+			e.printStackTrace(); 
+		} 
+		return strResult; 
+	} 
+	// 普通Json数据解析 
+	private void parseJson(String strResult) { 
+		try { 
+			JSONObject jsonObj = new JSONObject(strResult).getJSONObject("singer"); 
+			int id = jsonObj.getInt("id"); 
+			String name = jsonObj.getString("name"); 
+			String gender = jsonObj.getString("gender"); 
+			tvJson.setText("ID号"+id + ", 姓名：" + name + ",性别：" + gender); 
+		} catch (JSONException e) { 
+			System.out.println("Json parse error"); 
+			e.printStackTrace(); 
+		} 
+	} 
+    //解析多个数据的Json
+	private void parseJsonMulti(String strResult) { 
+		try { 
+			JSONArray jsonObjs = new JSONObject(strResult).getJSONArray("singers"); 
+			String s = ""; 
+			for(int i = 0; i < jsonObjs.length() ; i++){ 
+				JSONObject jsonObj = (JSONObject)jsonObjs.get(i); 
+				int id = jsonObj.getInt("id"); 
+				String name = jsonObj.getString("name"); 
+				String gender = jsonObj.getString("gender"); 
+				s +=  "ID号"+id + ", 姓名：" + name + ",性别：" + gender+ "\n" ; 
+			} 
+			tvJson.setText(s); 
+		} catch (JSONException e) { 
+			System.out.println("Jsons parse error !"); 
+			e.printStackTrace(); 
+		} 
+	} 
+} 

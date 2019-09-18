@@ -1,0 +1,33 @@
+//final String u = "http://58.220.49.218:5030/SF";
+		final String u = "https://www.baidu.com";
+		new Thread() {
+			public void run() {
+				try {
+					String re = null;
+					URL url = new URL(u);
+					URLConnection con = url.openConnection();
+					con.setDoOutput(true);
+					con.setRequestProperty("Pragma:", "no-cache");
+					con.setRequestProperty("Cache-Control", "no-cache");
+					con.setRequestProperty("Content-Type", "text/xml;charset=utf-8");
+					OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream());
+					out.write(new String("UTF-8"));
+					out.flush();
+					out.close();
+					InputStream inputStream = con.getInputStream();
+					InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+					BufferedReader br = new BufferedReader(inputStreamReader);
+					String line = "";
+					for (line = br.readLine(); line != null; line = br.readLine()) {
+						re = re + line;
+					}
+					Log.e("Œ“postXML∑µªÿ÷µ", re);
+					br.close();
+					inputStreamReader.close();
+					inputStream.close();
+					Log.e("url", u);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		}.start();

@@ -1,0 +1,26 @@
+下载支付宝支付API，导入到项目中
+在Activity类 StopCar.java 中声明//支付类
+	private PayActivityUtils payActivityUtils = null;
+
+然后进行实例化
+
+//实例支付类,获取到支付的对象
+	payActivityUtils = new PayActivityUtils(StopCar.this, mPayHandler);
+
+
+接着调用支付类方法
+
+	payActivityUtils.Pay("支付", "停车缴费", Je, ddh);//支付 
+
+最后返回数据到mPayHandler中
+
+	/**
+	 * 支付返回Handler
+	 * */
+	private Handler mPayHandler = new Handler()
+	{ 
+		@Override
+		public void handleMessage(Message msg) { 
+
+		}
+	}

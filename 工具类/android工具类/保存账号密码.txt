@@ -1,0 +1,17 @@
+声明
+SharedPreferences sp=null;
+sp = this.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+
+获取
+	callingNumber.setText(sp.getString("uname", null));
+	calledNumber.setText(sp.getString("upassword", null));
+
+boolean CheckBoxLogin = true;
+		      //按钮被选中，下次进入时会显示账号和密码             
+		      if (CheckBoxLogin)
+		      {
+		          Editor editor = sp.edit();
+		          editor.putString("uname", callingNumber.getText().toString());
+		          editor.putString("upassword", calledNumber.getText().toString());
+		          editor.commit();
+		      }

@@ -1,0 +1,1 @@
+inquire.setClickable(false);//按键不能点击

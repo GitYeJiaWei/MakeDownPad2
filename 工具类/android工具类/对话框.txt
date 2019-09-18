@@ -1,0 +1,41 @@
+//第一种方法  
+public void onBackPressed() {  
+    new AlertDialog.Builder(this).setTitle("确认退出吗？")  
+    .setIcon(android.R.drawable.ic_dialog_info)  
+    .setPositiveButton("确定", new DialogInterface.OnClickListener() {  
+  
+        @Override  
+        public void onClick(DialogInterface dialog, int which) {  
+        // 点击“确认”后的操作  
+        MainFragmentActivity.this.finish();  
+  
+        }  
+    })  
+    .setNegativeButton("返回", new DialogInterface.OnClickListener() {  
+  
+        @Override  
+        public void onClick(DialogInterface dialog, int which) {  
+        // 点击“返回”后的操作,这里不设置没有任何操作  
+        }  
+    }).show();    
+}  
+
+//第二种方法
+handler=new Handler(){
+			public void handleMessage(Message msg) {
+				super.handleMessage(msg);
+				getResult1=(String) msg.obj;
+				if (getResult1.indexOf("1")>-1){
+					new  AlertDialog.Builder(MainActivity.this).setTitle("提示")   
+					                .setMessage("您未授权，请联系管理员" )  
+					                .setCancelable(false)//其他地方都不能点击
+					                .setPositiveButton("确定", new DialogInterface.OnClickListener() {  
+					                    @Override  
+					                    public void onClick(DialogInterface dialog, int which) {  
+					                    // 点击“确认”后的操作  
+					                    	System.exit(0);
+					                    }  
+					                }).show();
+	    		}
+		};
+};

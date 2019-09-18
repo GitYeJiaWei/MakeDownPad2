@@ -1,0 +1,4 @@
+stopService(new Intent(MainActivity.this, LinshengService.class));
+		//¿ªÆô·þÎñ
+		Intent intent = new Intent(MainActivity.this, LinshengService.class);
+		startService(intent);

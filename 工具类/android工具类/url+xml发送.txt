@@ -1,0 +1,35 @@
+@Override
+	public void run() {
+		StringBuilder xml = new StringBuilder();
+        xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        xml.append("<service name=\"callRequest\">");
+        xml.append("<messageID>" + globalMessageID + "</messageID>");
+        xml.append("<callID>" + globalcallID + "</callID>");
+        xml.append("<vccID>1007</vccID>");
+        xml.append("</service>"); 
+        xml.append("</callOutService>");
+        try {
+        	String xmlbyte =xml.toString();
+            System.out.println(xml);
+            URL httpUrl = new URL(curl);
+            curl="url="+address+"&xml="+xmlbyte;
+            Log.e("url", address+" "+xmlbyte);
+            Log.e("curl", curl);
+            HttpURLConnection conn=(HttpURLConnection) httpUrl.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setDoOutput(true);// 允许输出
+            conn.setDoInput(true);
+            conn.setUseCaches(false);// 不使用缓存
+            conn.setRequestMethod("POST");
+            OutputStream out=conn.getOutputStream();
+            conn.getOutputStream().write(curl.getBytes());
+            conn.getOutputStream().flush();
+            conn.getOutputStream().close();
+
+            if (conn.getResponseCode() != 200)
+                throw new RuntimeException("请求url失败");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println(e);
+        }
+	}

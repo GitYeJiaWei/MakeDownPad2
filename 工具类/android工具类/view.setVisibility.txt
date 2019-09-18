@@ -1,0 +1,24 @@
+private void showFirst(boolean isShow) {
+		if (isShow) {
+			tv_parkingRecord.setTextColor(getResources().getColor(
+					R.color.c_orange_red));
+			v_parkingRecord.setVisibility(View.VISIBLE);
+			tv_visitRecord.setTextColor(getResources().getColor(R.color.black));
+			v_visitRecord.setVisibility(View.INVISIBLE);
+		} else {
+			tv_visitRecord.setTextColor(getResources().getColor(
+					R.color.c_orange_red));
+			v_visitRecord.setVisibility(View.VISIBLE);
+			tv_parkingRecord.setTextColor(getResources()
+					.getColor(R.color.black));
+			v_parkingRecord.setVisibility(View.INVISIBLE);
+		}
+}
+
+android中UI应用的开发中经常会使用view.setVisibility（）来设置控件的可见性，
+其中该函数有3个可选值，他们有着不同的含义：
+
+View.VISIBLE--->可见
+View.INVISIBLE--->不可见，但这个View仍然会占用在xml文件中所分配的布局空间，不重新layout 
+View.GONE---->不可见，但这个View在ViewGroup中不保留位置，会重新layout，不再占用空间，
+那后面的view就会取代他的位置，

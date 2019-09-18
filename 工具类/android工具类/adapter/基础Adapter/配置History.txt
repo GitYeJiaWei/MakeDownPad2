@@ -1,0 +1,4 @@
+<activity 
+            android:name="com.boss.taxi.History"
+            android:screenOrientation="nosensor">
+        </activity>

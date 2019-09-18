@@ -1,0 +1,15 @@
+1，int length()返回当前字符串的长度。
+2，int indexOf(char ch)查找字符ch 在字符串中第一次出现的位置。
+3，int indexOf(String str)查找字符str 在字符串中第一次出现的位置。
+3，int lastIndexOf(cahr ch)查找字符ch在字符串中最后一次出现的位置。
+4，int lastIndexOf(String str)查找str在字符串中最后一次出现的位置。
+5，String substring(int beginIndex)获取从下标开始到最后的内容。
+6，String substring(int beginIndex,int endIndex)获取两位置之间的内容。
+7，String trim()除去了前后空格的字符串。
+8，boolean equals(Object obj)将该字符串与该对象进行比较返回True或False。
+9，String toLowerCase()将字符串变成小写。
+10.String toUpperCase()将字符串变成大写。
+11,char charAt(int index)获取字符串中指定位置的字符。
+12，String[]split（String regex,int limit）将字符串分割成字符串返回字符串数组。
+13，byte[]getByte()将字符串转化成byte数组
+substring不包括endIndex位置的字符

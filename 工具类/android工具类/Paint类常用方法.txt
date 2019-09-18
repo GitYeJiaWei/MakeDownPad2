@@ -1,0 +1,10 @@
+Paint 代表了Canvas上的画笔、画刷、颜料
+
+
+setARGB(int a, int r, int g, int b) // 设置 Paint对象颜色，参数一为alpha透明值
+setAlpha(int a) // 设置alpha不透明度，范围为0~255
+setAntiAlias(boolean aa) // 是否抗锯齿
+setColor(int color)  // 设置颜色，这里Android内部定义的有Color类包含了一些常见颜色定义
+setTextScaleX(float scaleX)  // 设置文本缩放倍数，1.0f为原始
+setTextSize(float textSize)  // 设置字体大小
+setUnderlineText(booleanunderlineText)  // 设置下划线

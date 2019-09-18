@@ -1,0 +1,13 @@
+if(IsShare.indexOf(".") != -1)
+{
+	num.setText(IsShare.substring(0,IsShare.indexOf("."))+"个");
+} 
+else
+{
+	num.setText(IsShare+"个");	
+}
+
+判断字符串是否存在小数点，有的话把小数点前面的数字显示出来
+
+stringObject.substring(start,stop)
+substring() 方法返回的子串包括 start 处的字符，但不包括 stop 处的字符。

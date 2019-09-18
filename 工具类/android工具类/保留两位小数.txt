@@ -1,0 +1,6 @@
+//保留两位小数
+	DecimalFormat  df = new DecimalFormat("######0.00"); 
+	personlSound.speak("收到金额"+df.format(je) +"元");
+        df.format(object.getDouble("ShareMoney"));
+
+DecimalFormat  只能更改double型的值

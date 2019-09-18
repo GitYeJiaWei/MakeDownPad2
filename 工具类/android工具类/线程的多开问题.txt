@@ -1,0 +1,36 @@
+new Thread(){
+			@Override
+			public void run() { 
+				
+				while(IsRead)
+				{
+					synchronized(this)
+					{
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						 String result = "";
+						 Message msg = getPriceHandler.obtainMessage();
+						 try 
+						 {
+							 final HashMap<String, String> map=new HashMap<String, String>();
+							 map.put("maxid", MaxId+"");
+							 map.put("committype", "getmxcount");
+							 map.put("sjh", account);
+							 AsyncPostRequest _AsyncGetRequest = new AsyncPostRequest(MainActivity.this,"", getPriceHandler, "tools/android.ashx",map,false);
+							 _AsyncGetRequest.execute();
+						} catch (Exception e) {
+							 
+						}
+						 getPriceHandler.sendMessage(msg);
+					}
+				}
+			} 
+		}.start(); 
+
+//线程每new一个都会出现一个线程，造成同时多个线程同步的问题
+要么把线程放在最前面，只开启一次，要么没开启一个线程都关掉一个

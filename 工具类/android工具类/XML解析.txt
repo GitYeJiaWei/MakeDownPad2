@@ -1,0 +1,52 @@
+ try {
+	        	Log.e("url", curl);
+	            URL httpUrl = new URL(curl);
+	            HttpURLConnection conn=(HttpURLConnection) httpUrl.openConnection();
+	            conn.setRequestMethod("POST");
+	            conn.setConnectTimeout(5000);
+	            if (conn.getResponseCode() != 200)
+	            	throw new RuntimeException("请求url失败");
+	            
+	            // 使用输出流来输出字符(可选)
+	            InputStream is = conn.getInputStream();// 获取返回数据
+	            ByteArrayOutputStream out1 = new ByteArrayOutputStream();
+	            byte[] buf = new byte[1024];
+	            int len;
+	            while ((len = is.read(buf)) != -1) {
+	                out1.write(buf, 0, len);
+	            }
+	            string = out1.toString("UTF-8");
+	            Handler handler = null;
+	            Message msg=Message.obtain();
+	            msg.obj=string;
+	            handler.sendMessage(msg);
+	            list.add(string);
+	            Log.e("out", "123");
+	            System.out.println(string);
+	            Log.e("out", "123");
+	            out1.close();
+	            
+	            // xml解析
+	            XmlPullParser parser = Xml.newPullParser();
+	            try {
+	                parser.setInput(new ByteArrayInputStream(string.substring(1)
+	                        .getBytes("UTF-8")), "UTF-8");
+	                 parser.setInput(is, "UTF-8");
+	                int eventType = parser.getEventType();
+	                while (eventType != XmlPullParser.END_DOCUMENT) {
+	                    if (eventType == XmlPullParser.START_TAG) {
+	                        if ("globalMessageID".equals(parser.getName())) {
+	                        	globalMessageID = parser.getAttributeValue(0);
+	                        } else if ("globalcallID".equals(parser.getName())) {
+	                        	globalcallID = parser.nextText();
+	                        } 
+	                    }
+	                    eventType = parser.next();
+	                }
+	            } catch (XmlPullParserException e) {
+	                e.printStackTrace();
+	                System.out.println(e);
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	                System.out.println(e);
+	            }

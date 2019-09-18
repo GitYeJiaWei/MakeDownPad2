@@ -1,0 +1,81 @@
+先创建libs 把okhttp两个包放入并build
+GET方法：
+调用OKHttp(url);
+
+private void OKHttp(String url) {
+			
+			final OkHttpClient client =new OkHttpClient();
+			String url="http://153.3.49.41:8078/CQTTest/Test/clickToDial.do";
+			final Request request = new Request.Builder()
+					.get()
+					.tag(this)
+					.url(url)
+					.build();
+			
+			 new Thread(new Runnable() {
+		         public void run() {
+		             Response response = null;
+		             try {
+		                 response = client.newCall(request).execute();
+		                 if (response.isSuccessful()) {
+		                     Log.e("WY","打印GET响应的数据：" + response.body().string());
+		                 } else {
+		                     throw new IOException("Unexpected code " + response);
+		                 }
+		             } catch (IOException e) {
+		                 e.printStackTrace();
+		             }
+		         }
+		     }).start();			
+}
+
+POST方法：
+ private void postRequest(String url) {
+
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("name","大黄")
+                .build();
+
+        final Request request = new Request.Builder()
+                .url("http://www.wooyun.org")
+                .post(formBody)
+                .build();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Response response = null;
+                try {
+                    response = client.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        Log.i("WY","打印POST响应的数据：" + response.body().string());
+                    } else {
+                        throw new IOException("Unexpected code " + response);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+}
+提取响应头：
+private final OkHttpClient client = new OkHttpClient();
+
+  public void run() throws Exception {
+    Request request = new Request.Builder()
+        .url("https://api.github.com/repos/square/okhttp/issues")
+        .header("User-Agent", "OkHttp Headers.java")
+        .addHeader("Accept", "application/json; q=0.5")
+        .addHeader("Accept", "application/vnd.github.v3+json")
+        .build();
+
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+    System.out.println("Server: " + response.header("Server"));
+    System.out.println("Date: " + response.header("Date"));
+    System.out.println("Vary: " + response.headers("Vary"));
+  }

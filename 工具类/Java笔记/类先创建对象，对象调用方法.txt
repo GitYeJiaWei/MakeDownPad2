@@ -1,0 +1,56 @@
+第一步，定义方法
+
+例如：下面代码定义了一个方法名为 show ，没有参数，且没有返回值的方法，
+
+执行的操作为输出 “ welcome to imooc. ”
+	
+public  void     showMyLove() {
+		
+	System.out.println("我爱慕课网!");
+	
+}
+
+
+注意哦：
+
+1、 方法体放在一对大括号中，实现特定的操作
+
+2、 方法名主要在调用这个方法时使用，需要注意命名的规范，一般采用第一个单词首字母小写，
+其它单词首字母大写的形式
+
+第二步，调用方法
+
+当需要调用方法执行某个操作时，可以先创建类的对象，然后通过  对象名.方法名();  来实现
+（关于类和对象的概念在后面章节中会详细讲解滴，先熟悉语法，表着急哦~~）
+
+例如：在下面的代码中，我们创建了一个名为 hello 的对象，然后通过调用该对象的 show( ) 
+方法输出信息
+public class HelloWorld {
+    
+    
+	public static void main(String[] args) {
+		
+	// 创建对象，对象名为hello
+		
+		HelloWorld hello=new HelloWorld();
+        
+		
+	// 调用方法
+		
+		hello.showMyLove();
+	}
+
+	
+	/*
+	 * 定义无参无返回值的方法
+	 */
+	
+	public  void     showMyLove() {
+		
+		System.out.println("我爱慕课网!");
+	}
+
+}
+
+
+运行结果为：  welcome to imooc.

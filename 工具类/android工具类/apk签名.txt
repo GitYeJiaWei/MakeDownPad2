@@ -1,0 +1,17 @@
+ 2.3.2  使用ADT插件方式进行签名
+
+如果读者想在Eclipse中直接对apk文件进行签名，可以使用ADT插件附带的功能。在工程右键菜单中单击【Android Tools】>【Export Signed Application Package...】菜单项，打开【Export Android Application】对话框，并在第一页输入要导出的工程名，如图2.9所示。
+
+进入下一个设置页后，输入密钥文件的路径（【Location】文本框）和密码，如图2.10所示。在接下来的两个设置界面中分别输入签名信息和要生成的apk文件名，如图2.11和图2.12所示。
+ 
+图2.9  指定要导出的工程
+ 
+图2.10  指定密钥文件的路径和密码
+ 
+图2.11  输入签名信息
+ 
+图2.12  输入要生成的apk文件名
+
+在进行完上面的设置后，单击【Finish】按钮生成被签名的apk文件。查看生成的文件后会发现，除了生成ch02_showdatetime.apk文件外，还生成了一个private_keys文件。该文件就是密钥文件。下次再签名时可以直接选择该文件。
+
+在对apk文件签完名后，可以直接将apk文件复制给要使用软件的用户或发布到Android Market以及中国移动的Mobile Market上。要注意的是，Android Market不允许上传未签名的apk文件，因此，必须对apk文件进行签名才能上传到Android Market上。

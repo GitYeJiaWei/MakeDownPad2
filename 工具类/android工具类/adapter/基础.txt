@@ -1,0 +1,25 @@
+1.首先要有一个adapter（适配器）和list（容器存数据）
+
+private CommonToAdapter<JSONObject> adapter;
+private List<JSONObject> objects = new ArrayList<JSONObject>();
+
+2.传值并且更新界面
+
+adapter = new CommonToAdapter<JSONObject>(getContext(), objects, this);
+listView.setAdapter(adapter);
+listView.startPullRefresh();
+adapter.notifyDataSetChanged();
+
+3.list的点击事件
+
+listView.setOnItemClickListener(new OnItemClickListener() {
+
+		@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(getActivity(),
+						ParkingBookDetailActivity.class);
+				intent.putExtra("data", objects.get(position - 1).toString());
+				startActivityForResult(intent, CODE_START);
+		}
+});

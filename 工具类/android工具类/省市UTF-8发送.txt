@@ -1,0 +1,119 @@
+package com.example.myhttp;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Response;
+import android.app.DownloadManager.Request;
+import android.util.Log;
+
+public class HttpFindNum extends Thread {
+	String curl;
+	String province;//省份
+	String city;//地市
+	String type;//应用
+	String mac;
+	
+	public HttpFindNum(String curl, String province, String city, String type,String mac) {
+		super();
+		this.curl = curl;
+		this.province = province;
+		this.city = city;
+		this.type = type;
+		this.mac=mac;
+	}
+	
+	
+	@Override
+	public void run() {
+		type="2";
+		if (province.indexOf("省")>-1) {
+			province=province.replaceAll("省", "");
+		}else if (province.indexOf("特别行政区")>-1) {
+			province=province.replaceAll("特别行政区", "");
+		}else if (province.indexOf("市")>-1) {
+			province=province.replaceAll("市", "");
+		}else if (province.indexOf("壮族自治区")>-1) {
+			province=province.replaceAll("壮族自治区", "");
+		}else if (province.indexOf("回族自治区")>-1) {
+			province=province.replaceAll("回族自治区", "");
+		}else if (province.indexOf("维吾尔自治区")>-1) {
+			province=province.replaceAll("维吾尔自治区", "");
+		}
+		if(city.indexOf("市辖区")>-1 || city.indexOf("市辖县")>-1){
+			city=city.replaceAll(city, province);
+		}else if  (city.indexOf("市")>-1)  {
+			city=city.replaceAll("市", "");
+		}
+		
+		/*try {
+			HttpPost request=new HttpPost(curl);
+            Log.e("报文", province+" "+city+" "+type);
+            Log.e("curl", curl);
+            JSONObject clientkey =new JSONObject();
+            clientkey.put("province", province);
+            clientkey.put("city", city);
+            clientkey.put("type", type);
+            StringEntity se =new StringEntity(clientkey.toString());
+            request.setEntity(se);
+            
+            HttpResponse httpResponse = new DefaultHttpClient().execute(request);
+            String retSrc = EntityUtils.toString(httpResponse.getEntity());
+            System.out.println(retSrc);
+            JSONObject result = new JSONObject(retSrc);
+            
+		} catch (Exception e) {
+			// TODO: handle exception
+		}*/
+		
+		
+		
+        try {
+        	province = new String(province.getBytes("UTF-8"),"iso-8859-1");
+        	//把UTF-8转换为iso-8859-1
+        	city = new String(city.getBytes("UTF-8"),"iso-8859-1");
+        	curl=curl+"?province="+province+"&city="+city+"&type="+type+"&macAddress="+mac;
+        	URL httpUrl = new URL(curl);
+            Log.e("报文", province+" "+city+" "+type+" "+mac);
+            Log.e("curl", curl);
+            HttpURLConnection conn=(HttpURLConnection) httpUrl.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setDoOutput(true);// 允许输出
+            conn.setDoInput(true);
+            conn.setUseCaches(false);// 不使用缓存
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Charset", "UTF-8");
+            
+            if (conn.getResponseCode() != 200)
+                throw new RuntimeException("请求url失败");
+            InputStream is = conn.getInputStream();// 获取返回数据
+
+            ByteArrayOutputStream out1 = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = is.read(buf)) != -1) {
+                out1.write(buf, 0, len);
+            }
+            String string = out1.toString("UTF-8");
+            Log.e("返回报文", "123");
+            System.out.println(string);
+            Log.e("返回报文", "123");
+            out1.close();
+            is.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+	}
+}

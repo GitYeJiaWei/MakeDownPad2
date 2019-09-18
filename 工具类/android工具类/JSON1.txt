@@ -1,0 +1,26 @@
+单数据{'singer':{'id':1,'name':'tom','gender':'男'}} 
+多个数据{'singers':[{'id':'2','name':'tom','gender':'男'},{'id':'3','name':'jerry','gender':'男'},{'id':'4','name':'jim','gender':'男'},{'id':'5','name':'lily','gender':'女'}]}   
+
+
+
+
+
+
+{
+   //result是一个结果值，当我们的客户端从服务器接受的Json串中的result为1的时，说明接收数据正确。
+    "result": 1,
+    "personDate": [
+        {
+            "name": "Nate",
+            "age": 12,
+            "school_info": "清华",
+            "url": "http://image.dili360.com/eweekly/ezhoukan/026/36_312525427_20110727180330.jpg"
+        },
+        {
+            "name": "Jack",
+            "age": 24,
+            "school_info": "北大",
+            "url": "http://cache.house.sina.com.cn/citylifehouse/citylife/b7/7b/20090611_29015_1.jpg"
+        }
+    ]
+}                                                                         
