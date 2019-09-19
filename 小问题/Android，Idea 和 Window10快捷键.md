@@ -1,6 +1,6 @@
-#Android 和 Idea快捷键
+#Android，Idea 和 Window10快捷键
 
-file:///D:/SDK/docs/reference/classes.html  API文档路径
+file:///D:/SDK/docs/reference/classes.html  API文档路径(断网使用)
 
 ```
 常用的有fori/sout/psvm+Tab即可生成循环、System.out、main方法等boilerplate样板代码 
@@ -48,3 +48,22 @@ CTRL+Z   倒退(撤销)
 CTRL+SHIFT+Z  向前(取消撤销) 
 
 ```
+
+##window10 快捷键 
+###首先打开运行窗口，DOS命令 win+R  
+
+```
+write----------写字板
+mspaint--------画图板
+mstsc----------远程桌面连接
+devmgmt.msc--- 设备管理器
+notepad--------打开记事本
+regedit----注册表
+taskmgr--------任务管理器
+cmd.exe--------CMD命令提示符
+Clipbrd--------剪贴板查看器
+calc 计算器
+control 控制面板
+
+```
+
