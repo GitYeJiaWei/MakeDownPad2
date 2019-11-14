@@ -6,6 +6,7 @@
 Activity的生命周期共七个指示器：onCreate、onStart、onResume、onPause、onStop、onDestroy、onRestart。
 
 如下图所示。
+![](https://raw.githubusercontent.com/GitYeJiaWei/MakeDownPad2/master/%E5%85%B6%E5%AE%83%E5%9B%BE%E7%89%87/android.png)
 
 （1）onCreate() ，不可见状态
 在Activity被创建时回调，第一个生命周期。我们一般在创建Activity时需要重写该方法做一些初始化的操作，如通过setContentView设置界面布局的资源，初始化所需要的组件信息等。
