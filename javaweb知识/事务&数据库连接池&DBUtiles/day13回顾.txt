@@ -1,0 +1,82 @@
+
+JSP
+
+	三个指令
+	
+		page  ： 定义当前页面的一些信息 
+		include ： 包含其他页面
+		taglib : 引入标签库
+		
+	三个动作标签
+	
+		<jsp:forward page=""> : 跳转
+		<jsp:include page=""> : 包含
+		<jsp:param name="" value=""> : 跳转到具体页面或者是某个页面被包含的时候，可以指定这个参数。
+		
+	九个内置对象
+		4+5
+		pageContext
+			作用范围： 当前页
+		request
+			作用范围： 一次请求
+		session
+			作用范围： 一次会话
+		application
+			作用范围： 整个项目，直到关闭服务器。
+		
+		
+		
+		response
+		out
+		exception
+		config -- ServletConfig
+		page --- this 这个jsp翻译成java文件的类对象。
+
+EL
+	${}
+	
+		1. 取值。 
+		
+		<% User user = new User(); 
+			pageContext.setAttribute("u" , user);
+		%>
+		
+		${u.name} ---> 是从四个作用域里面，由小到大去获取值。 如果没有， 那就什么都没有。
+	
+		${sessionScope.u.name} --> 强制到session里面去找
+	
+		2. 11个隐式对象。 (10 map + 1 pageContext )
+		--- 4 (作用域)+ 7  ${}
+		
+		pageContext
+		
+		pageScope
+		requestScope
+		sessionScope
+		applicationScop
+		
+		头相关
+		header
+		headerValues
+		
+		参数相关
+		param
+		paramValues
+		
+		
+		
+		cookie
+		initparam
+
+JSTL
+
+	1. 导包
+	
+	2. 引入标签库(1.1 EL)
+	
+		taglib 
+	3. 常用标签
+	
+		<c:set var="" value="" scope=""> ：存储一个值到作用域里面， page
+		<c:if>  ： 判断
+		<c:forEach items="" var=""> : 遍历

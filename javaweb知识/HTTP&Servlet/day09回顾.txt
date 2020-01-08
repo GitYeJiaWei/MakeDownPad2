@@ -1,0 +1,78 @@
+XML
+
+	1. 会写XML ， 看得懂XML 
+	
+	2. 解析
+	
+		1. 有几种方式
+			
+			Dom Sax
+			
+		2. 针对以上两种方式，有如下解决方案 API
+		
+			Dom4j
+			Jdom
+			
+			jaxp sun 自带
+	
+		Dom4j
+		
+			//1. 构建解析对象
+			SAXReader reader = new SAXReader();
+			
+			//2. 指定到底解析谁。 文件
+			Document document = reader.read(path|file|inputStream);
+
+			//3. 获取根元素
+			Element rootElement = document.getRootElement();
+			
+			//获取根元素下的子元素 ，元素名称 ： stu
+			Element element = rootElement.element("stu").element("name");
+			String namerootElement.element("stu").element("name").getText();
+			
+			
+			//map<key ,value> list  set
+			//获取根元素下的所有stu元素
+			List<Element> list = rootElement.elements("stu");
+			
+			for(int i= 0 ; i<list.size ; i++){
+			
+				//这里是遍历出来了根标签下的所有子标签 stu
+				Element element = list.get(i);
+				element.getText();
+			}
+			
+		Xpath : 支持我们在解析xml的时候，快速的定位到具体的元素 path --路径
+
+		//dom4j 支持xPath的方法有哪些。
+		
+			//2. 指定到底解析谁。 文件
+			Document document = reader.read(path|file|inputStream);
+			
+			//3. 获取根元素
+			Element rootElement = document.getRootElement();
+			
+			
+			
+			
+				现在调用该方法的是Element这种类型的对象
+				
+				但是定义这个selectNodes的方法是定义在一个接口中 Node
+				
+				请问这么写有没有错?
+			
+			
+			//获取文档中所有的stu 体现了java的多态 | 继承
+			rootElement.selectNodes("//stu");
+			
+			//获取文档中第一个出现的stu
+			rootElement.selectSingleNode("//stu") 
+
+	面试：
+		区别 ， 优缺点。 
+		DTD	
+		Schema
+		
+TomCat
+	
+	1. 知道如何跑起来

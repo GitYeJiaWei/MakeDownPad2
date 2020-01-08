@@ -1,0 +1,114 @@
+
+10个Demo
+
+ServletContext 
+
+	介绍： 什么是ServletContext
+	
+		服务器在启动的时候，给每一个应用程序都创建一个ServletContext。		并且这个ServletContext 对象只有一个。 
+	
+	作用： 有什么用
+	
+		1. 获取全局参数
+		
+		2. 获取工程下的资源
+		
+		3. 存取数据 ，共享数据
+	
+	例子： 怎么用？
+	
+		1. 演示怎么获取全局参数
+			
+			getServletContext().getInitParams(); 
+			
+			-----这个跟以前的那个
+			
+			getServletConfig().getInitPrams();
+			
+			有什么区别
+		
+		2. 演示怎么获取工程下的资源
+		
+		
+			getServletContext().getRealPath()
+			
+			getServletContext().getReasourceAsStream();
+			
+			---------------------------------------
+			
+			使用类加载去获取。
+			
+			InputStream is = getClass().getClassLoader().getReasourceAsStream();
+			
+			
+			这两种方式有什么区别？
+			
+			相对路径和绝对路径
+		
+		3. 演示怎么存取数据
+		
+			getServletContext().setAttribute()
+			
+				getAttribute() .
+				
+			演示：
+				跨Servlet存和取。
+				
+				在A  Servlet 存数据 ， 在B Servlet取数据
+				
+			获取登录成功次数。
+
+	疑问：
+		为什么是这个样子
+		其中有一个方法
+
+HttpServletRequest
+
+	是什么？
+		其实就是一个请求对象。 用于封装客户端提交过来的信息。
+	
+	有什么用？
+	
+	怎么用？
+	
+		1. 获取头。
+		
+		2. 获取提交过来的数据
+		
+			request.getParameter("name");//---zhangsan
+			
+		3. 中文乱码
+		
+			Get
+			
+			Post
+
+HttpServletResponse
+
+
+	这是一个响应对象，就是服务器要给客户端返回的数据，都靠这个对象来完成。
+	
+	怎么用？
+	
+	1. 返回简单的文字 （字母）
+	
+	2. 返回中文(解决中文乱码)
+	
+	3. 跳转具体的页面(登录/注册)
+	
+		response.setStatus(302);
+		response.setHeader("Location" ,"login_success.html")
+	
+下载Demo	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

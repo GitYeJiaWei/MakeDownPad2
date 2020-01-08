@@ -1,0 +1,48 @@
+Ajax  
+
+	Get
+		1. 创建XmlHttpRequest
+		2. request.open("GET", "路径？name=zaaa" ,true);
+		3. request.send();
+	
+	Post
+	
+		1. 创建XmlHttpRequest
+		2. request.open("POST", "路径" ,true);
+		3. 设置头
+			request.setHeader("Content-Type","xxxxxxxx");
+		3. request.send("数据");
+	
+	
+	想拿数据
+		request.onReadyStateChange = function(){
+			readyState: 请求能被处理
+			if( readyState== 4  &&  status== 200){
+				request.responseText;
+			}
+		}
+
+Jquery
+
+	基本掌握： 能够使用JQuery发送 get 和 post请求。
+	接收服务器返回的数据，然后处理。
+	
+	
+	GET:
+		$.get( dizhi, function(){} );
+	
+	POST:
+		name=zhangsan age = 18 ;
+		$.post( dizhi,参数, function(){} );
+		参数:  {name:"zhangsan",age:18}
+
+1. 校验用户名
+
+2. 仿百度提示
+
+3. 省市联动。
+
+赋值：
+	val() :  只能给那些有value属性的赋值。
+	text():  一般的元素赋值  <aaaa>文本值<aaa>
+	html():  一般的元素赋值 <aaaa><html><aaa>

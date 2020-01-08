@@ -1,0 +1,121 @@
+
+
+Http协议
+	1.1
+	
+	客户端与服务器端通讯一种规则。
+	
+	
+	request:
+	
+		请求行
+		
+		请求头
+		
+		请求体
+	
+	response
+	
+		响应行
+		
+		响应头
+		
+		响应体
+		
+	Get  
+		1. 带上的数据，在url上面拼接的。 数据长度有限制 1KB
+		www.itheima.com
+		name=zhangsan
+		age=18;
+		
+		url: www.itheima.com?name=zhangsan&age=18
+		
+		2. 安全隐患
+
+	Post
+		
+		1. 以流的方式写过去的。 数据无限制
+		
+		Content-Type： 告诉服务器，带过来的数据乐行
+		Content-Length : 告诉服务器，带过来多少长度的数据
+
+
+Servlet入门
+
+	1. 写一个类， 实现接口Servlet
+	
+	2. 注册 web.xml
+	
+		<servlet>
+			servlet-name :  自定义
+			servlet-class :  全路径
+			<init-params> 不是必须的。  ---ServletConfig
+		</servlet>
+		
+		<servlet-mapping>
+			<srevlet-name>
+			<url-patter> 以正斜杠打头
+		<servlet-mapping>
+	
+Servlet的生命周期：
+
+	init 【只会执行一次】
+		默认情况下： 初次访问，就会执行。 
+		提前： 服务器启动的时候。 
+		
+			<servlet>
+				servlet-name :  自定义
+				servlet-class :  全路径
+				<load-on-startup>2</load-on-startup>
+			</servlet>
+		
+	
+	service【可以执行多次， 一次请求对应一次调用】
+	
+		只要有请求过来，就会执行。
+	
+	
+	destory 
+	
+		销毁的时候调用
+		
+		什么时候销毁?
+		
+			关浏览器--不销毁
+			
+			1.从服务器中移除托管
+			
+			2. 正常关闭服务器 ---- shutdown.bat
+			
+			
+通用的Servlet写法。
+
+
+	1. 初始的时候，入门demo，我们使用一个类， 继承了Servlet
+	
+		class ServletDeom  implements Servlet{
+		
+			//只要有请求就执行。
+			void service(){
+				
+			}
+			
+			...
+		}
+		
+	2. 稍微修改了一下 。 不是实现接口，而是继承这个接口已有的实现类 。HttpServlet  impelement Servlet
+		这个类虽然是抽象类，但是并没有抽象方法。
+		
+		原因是： 一定是在Service的方法内部，会对来访的请求是get 还是 post进行判断，然后分别调用doGet  doPost
+	
+		class ServletDeom  extends HttpServlet{
+			
+			//处理get
+			void doGet()
+			
+			//处理post请求
+			void doPost()
+		}
+		
+	
+		

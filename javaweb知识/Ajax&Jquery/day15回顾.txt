@@ -1,0 +1,88 @@
+day15:
+	
+	jsp开发模式：
+	
+		模式一： JSP + JavaBean
+		
+		模式二： JSP + JavaBean  + Servlet  
+		
+			M
+				对数据进行封装处理 
+			V
+				对显示有关
+			C
+				控制。
+
+	学生管理系统
+		
+		查询
+		
+		添加
+		
+		删除
+		
+			<a href=""  onclick="delete(${stu.sid})">删除</a>
+			
+			function delete (id){
+				
+				//确认
+				var flag = confirm("是否删除?");
+				if(flag){
+					//要删除。 请求servlet
+					//window.location.href=""
+					location.href="DeleteServlet?id="+id
+				}
+			}
+		
+		更新
+			
+			在form表单里面添加一个隐藏的id文本框。
+		
+			按ID 更新。
+			
+		
+		模糊查询
+		
+			//1. 只按姓名查询
+			
+			//2. 只按性别查询
+			
+			//3. 两者兼有。
+			
+			String sql = "select * from stu where 1=1";
+			
+			List<String> list = new ArrayList<String>();
+			if(如果有姓名的话。){
+				sql = sql + " and sname like ?"
+				
+				list.add("%"+sname+"%");
+			}
+			
+			if(如果有性别的话){
+				sql = sql + " and gender = ?"
+				
+				list.add(gender);
+			}
+			
+			queryNunner.query(sql , new BeanListHandler<Student>(Student.class) ,list.toArray());
+		
+		分页 (最难点)
+		
+			分页属于一个业务， 里面包含多个逻辑单元。
+			
+			1. 每一页的数据包含：
+			
+				class PageBean{
+					当前页		int currentPage
+					总页数   	int totalPage
+					总记录数    int totalSize
+					每页记录数  int pageSize
+					该页的学生集合。 List<Student>
+				}
+		
+			2. 在jsp页面上遍历显示的时候。
+			
+			
+			
+		
+		

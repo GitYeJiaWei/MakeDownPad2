@@ -1,0 +1,52 @@
+day14 事务 & 数据库连接池 & DBUtils
+
+
+事务
+
+	代码演示：
+	
+		设置连接自动提交关闭
+		setAutoCommit(false);
+		
+		...
+		...
+		
+		conn.commit();
+		
+		...
+		
+		conn.rollBack
+		
+	隔离级别：
+	
+		读未提交
+		读已提交
+		可重复读
+		可串行化  ----> 脏读、幻读、不可重复读
+
+数据库连接池【开源框架】
+
+  作用： 创建和管理连接对象。
+  
+  DBCP
+	代码设置
+	配置文件设置
+  C3P0
+	代码设置
+	配置文件设置
+		properties
+		xml 推荐使用xml
+
+DBUtils 【开源框架】
+
+ 作用： 简化咱们CRUD请求
+ 
+ QueryRunner runner = new QueryRunner();
+ 
+ //增删改
+ runner.update();
+ 
+ //查询
+ runner.query();
+ 
+ 

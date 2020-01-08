@@ -3,10 +3,13 @@
 file:///D:/SDK/docs/reference/classes.html  API文档路径(断网使用)
 
 ```
-常用的有fori/sout/psvm+Tab即可生成循环、System.out、main方法等boilerplate样板代码 
-例如要输入for(User user : users)只需输入user.for+Tab 
-再比如，要输入Date birthday = user.getBirthday();只需输入user.getBirthday().var+Tab即可。代码标签输入完成后，按Tab，生成代码
+常用的有fori/sout/psvm+Tab即可生成循环、System.out.println、main方法等boilerplate样板代码 
+要想输入for(User user : users),只需输入user.for+Tab ，或者输入iter
+要想输入Date birthday = user.getBirthday(),只需输入user.getBirthday().var+Tab
+要想输出System.out.println(1+2)，只需输入1+2.sout
 
+
+ctrl+alt+F 局部变量转为全局变量
 Ctrl+Alt+O 优化导入的类和包 
 Alt+Insert 生成代码(如get,set方法,构造函数等)   或者右键（Generate）
 Ctrl+Alt+T  生成try catch  或者 Alt+enter 
@@ -23,6 +26,7 @@ CTRL+Q，可以看到当前方法的声明
 Ctrl+P，可以显示参数信息
 Ctrl+Alt+T 捕获异常快捷键 
 Ctrl+Alt+V 补充返回对象快捷键
+CTRL+H，查看接口或类的继承实现关系图
 
  -----------查询快捷键--------
 CTRL+ U    查找类的父类（有重写的子类方法）
@@ -38,8 +42,8 @@ Ctrl+Shift+F  全局查找
 CTRL+R   在当前窗口替换文本  
 CTRL+E   最近打开的文件  
 F3   向下查找关键字出现位置  
-SHIFT+F3  向上一个关键字出现位置 
-Ctrl+Alt+h：显示调用当前方法的所有位置
+SHIFT+F3  字出现位置 
+Ctrl+Alt+h：显示调用当前向上一个关键方法的所有位置
 Ctrl+Shift+上下键  上下移动代码  
 Ctrl+X 删除行 
 Ctrl+D 复制行 
