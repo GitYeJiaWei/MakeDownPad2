@@ -3,7 +3,8 @@
 ```
 package com.view;
 /**
- * * int length():获取字符串的长度。
+ * indexOf()和substring() 的位置从0开始
+ * int length():获取字符串的长度。
  * char charAt(int index):获取指定索引位置的字符
  * int indexOf(int ch):返回指定字符在此字符串中第一次出现处的索引。
  * int indexOf(String str):返回指定字符串在此字符串中第一次出现处的索引。

@@ -1,8 +1,8 @@
 #重写系统返回键方法onBackPressed()无效（super的位置）
 
-```java
-@Override
-    public void onBackPressed() {
+```
+	@Override
+	public void onBackPressed() {
  
         Intent intent = new Intent();
         intent.putExtra(ISANSWER, 1);
@@ -53,7 +53,7 @@ public boolean onKeyDown(int keyCode, KeyEvent event)  {
 ```
 @Override
 public void onBackPressed() {
-// 这里处理逻辑代码，大家注意：该方法仅适用于2.0或更新版的sdk
-return;
+	// 这里处理逻辑代码，大家注意：该方法仅适用于2.0或更新版的sdk
+	super.onBackPressed();
 }
 ```

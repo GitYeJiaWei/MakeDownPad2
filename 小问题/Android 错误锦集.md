@@ -81,5 +81,6 @@ File->Settings->Build,Execution ->Instant Run 去掉前面的“√”即可
 >改成
 
 	@Field("Bat") int bat,@Field("Network") int Network,@Field("DustbinStatus") String DustbinStatus
+最好的解决办法是改成json方式
 
 

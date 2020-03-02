@@ -111,6 +111,94 @@ String path1 = Environment.getExternalStorageDirectory() + "/"+Environment.DIREC
                            }
                 );
 ```
+###NetUtils
+```
+ public static Retrofit toretrofit() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        //添加拦截器，自动追加参数
+        builder.addInterceptor(new BaseUrlInterceptor());
+        String BASE_URL = ACache.get(AppApplication.getApplication()).getAsString("BASE_URL");
+        if (BASE_URL == null) {
+            BASE_URL = ApiService.BASE_URL;
+        }
+
+        Retrofit retrofit = new Retrofit.Builder()
+                //设置基础的URL
+                .baseUrl(BASE_URL+"/")
+                //设置内容格式,这种对应的数据返回值是Gson类型，需要导包
+                .addConverterFactory(GsonConverterFactory.create())
+                //设置支持RxJava，应用observable观察者，需要导包
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(builder.build())
+                .build();
+        return retrofit;
+    }
+```
+###BaseUrlInterceptor
+```
+package com.ioter.sortfirst.common.http;
+
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.ioter.sortfirst.AppApplication;
+import com.ioter.sortfirst.common.util.ACache;
+import com.ioter.sortfirst.data.http.ApiService;
+
+import java.io.IOException;
+
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
+
+/**
+ * Created by Administrator on 2018/4/17.
+ */
+
+public class BaseUrlInterceptor implements Interceptor {
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        String BASE_URL = ACache.get(AppApplication.getApplication()).getAsString("BASE_URL");
+        //String DeviceId =  android.os.Build.SERIAL;
+        String DeviceId = "39f1144a-ba4c-5a2f-bbbd-7414aa510403";
+
+        if (BASE_URL == null){
+            BASE_URL = ApiService.BASE_URL;
+            ACache.get(AppApplication.getApplication()).put("BASE_URL", BASE_URL);
+        }
+
+        //获取原始的originalRequest
+        Request originalRequest = chain.request();
+        //获取老的url
+        HttpUrl oldUrl = originalRequest.url();
+
+        Request.Builder builder =null;
+        if (!TextUtils.isEmpty(DeviceId)) {
+            builder = originalRequest.newBuilder()
+                    .addHeader("DeviceId",DeviceId);
+                    //.addHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
+        }
+
+
+        //根据头信息中配置的value,来匹配新的base_url地址
+        String base_url = BASE_URL+"/";
+        HttpUrl baseURL = HttpUrl.parse(base_url);
+        //重建新的HttpUrl，需要重新设置的url部分
+        HttpUrl newHttpUrl = oldUrl.newBuilder()
+                .scheme(baseURL.scheme())//http协议如：http或者https
+                .host(baseURL.host())//主机地址
+                .port(baseURL.port())//端口
+                .build();
+        //获取处理后的新newRequest
+        Request newRequest = builder.url(newHttpUrl).build();
+        return chain.proceed(newRequest);
+    }
+}
+
+```
+
+
 
 ##关键代码
 >根据postman抓包，发现请求头是
@@ -126,3 +214,6 @@ File file = new File(pathList.get(i));
 写到最后忘了说文字参数了，文字参数相对文件来说容易些。
 
 在接口中，我们有文字参数 @Query("dustbinCode") String dustbinCode是在url中添加参数，@Part("data") String des是在body中田间参数，如果你需要多个，增加就行了。需要注意的是这个参数的名字比如”data”，不是前端自定义，而是后台定义的。
+
+##上传图片出现 expected 591 bytes but received 8192
+上传图片被更改，无法上传（上一张图片还没上传成功，就被更改了）
